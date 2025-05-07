@@ -1,3 +1,28 @@
 backend/API/.vs
 backend/API/bin/
 backend/API/obj/
+
+# Logs
+frontend/physio-ui/logs
+frontend/physio-ui/*.log
+frontend/physio-ui/npm-debug.log*
+frontend/physio-ui/yarn-debug.log*
+frontend/physio-ui/yarn-error.log*
+frontend/physio-ui/pnpm-debug.log*
+frontend/physio-ui/lerna-debug.log*
+
+frontend/physio-ui/node_modules
+frontend/physio-ui/dist
+frontend/physio-ui/dist-ssr
+frontend/physio-ui/*.local
+
+# Editor directories and files
+frontend/physio-ui/.vscode/*
+frontend/physio-ui/!.vscode/extensions.json
+frontend/physio-ui/.idea
+frontend/physio-ui/.DS_Store
+
+*.suo
+*.ntvs*
+*.njsproj
+*.sw?
