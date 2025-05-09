@@ -20,9 +20,10 @@
             var result = await _exerciseRepository.GetAllAsync().ConfigureAwait(false);
 
             return result
+                .Where(exercise => exercise != null) // Ensure null check
                 .Select(exercise => new ExerciseDto()
                 {
-                    Id = exercise.Id,
+                    Id = exercise!.Id, // Use null-forgiving operator
                     DurationSeconds = exercise.DurationSeconds,
                     Name = exercise.Name,
                     Repetitions = exercise.Repetitions,
@@ -55,7 +56,7 @@
                 .Where(exercise => exercise != null)
                 .Select(exercise => new ExerciseDto
                 {
-                    Id = exercise.Id,
+                    Id = exercise!.Id,
                     Name = exercise.Name,
                     Repetitions = exercise.Repetitions,
                     Sets = exercise.Sets,

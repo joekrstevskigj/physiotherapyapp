@@ -41,9 +41,8 @@
 
             if (patient != null)
             {
-                patient.Exercises = [];
+                patient.Exercises = [.. exerciseIds];
 
-                patient.Exercises.AddRange(exerciseIds);
                 return Task.FromResult(1);
             }
 

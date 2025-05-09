@@ -49,7 +49,7 @@
                 return NotFound();
             }
 
-            return Ok(result);
+            return Ok();
         }
     }
 }

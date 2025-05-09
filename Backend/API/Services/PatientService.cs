@@ -65,7 +65,7 @@
 
         public async Task<int> AssingExercise(int patientId, List<int> exercisesId)
         {
-            if (patientId <= 0)
+            if (patientId <= 0 || exercisesId == null)
             {
                 return -1;
             }
