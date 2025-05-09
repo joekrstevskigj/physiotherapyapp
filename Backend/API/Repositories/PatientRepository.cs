@@ -25,6 +25,7 @@
                 _patients.Add(patient);
             }
             catch (Exception ex) {
+                Console.WriteLine(ex.ToString());
                 return Task.FromResult(-1);
             }
             
@@ -32,15 +33,18 @@
             return Task.FromResult(patient.Id);
         }
 
-        public Task<int> AddExerciseAsync(int patiendId, int exerciseId)
+        public Task<int> AddExerciseAsync(int patientId, List<int> exerciseIds)
         {
             var _patients = applicationData.Patients;
 
-            var patient = _patients.FirstOrDefault(p => p.Id == patiendId);
+            var patient = _patients.FirstOrDefault(p => p.Id == patientId);
 
-            if (patient != null) { 
-                patient.Exercises.Add(exerciseId);
-                return Task.FromResult(exerciseId);
+            if (patient != null)
+            {
+                patient.Exercises = [];
+
+                patient.Exercises.AddRange(exerciseIds);
+                return Task.FromResult(1);
             }
 
             return Task.FromResult(-1);

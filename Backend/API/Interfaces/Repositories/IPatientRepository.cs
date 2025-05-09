@@ -7,7 +7,6 @@
         Task<int> AddAsync(PatientModel patient);
         Task<PatientModel?> GetByIdAsync(int id);
         Task<List<PatientModel>> GetAllAsync();
-
-        Task<int> AddExerciseAsync(int patientID, int exerciseId);
+        Task<int> AddExerciseAsync(int patientID, List<int> exercisesId);
     }
 }

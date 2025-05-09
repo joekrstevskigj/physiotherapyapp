@@ -86,12 +86,12 @@ namespace API.Controllers
                 return BadRequest($"{nameof(assignData)} must be supplied.");
             }
 
-            if (assignData.ExerciseId <= 0 || assignData.PatientId <= 0)
+            if (assignData.ExercisesId == null || assignData.ExercisesId.Count <= 0 || assignData.PatientId <= 0)
             {
                 return BadRequest("IDs must be supplied.");
             }
 
-            var result = await _patientService.AssingExercise(assignData.PatientId, assignData.ExerciseId).ConfigureAwait(false);
+            var result = await _patientService.AssingExercise(assignData.PatientId, assignData.ExercisesId).ConfigureAwait(false);
 
             if(result <= 0)
             {

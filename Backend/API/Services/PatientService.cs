@@ -63,14 +63,14 @@
                 };
         }
 
-        public async Task<int> AssingExercise(int patientId, int exerciseId)
+        public async Task<int> AssingExercise(int patientId, List<int> exercisesId)
         {
-            if (exerciseId <= 0 || patientId <= 0)
+            if (patientId <= 0)
             {
                 return -1;
             }
 
-            var result = await _repository.AddExerciseAsync(patientId, exerciseId).ConfigureAwait(false);  
+            var result = await _repository.AddExerciseAsync(patientId, exercisesId).ConfigureAwait(false);  
 
             return result; 
         }

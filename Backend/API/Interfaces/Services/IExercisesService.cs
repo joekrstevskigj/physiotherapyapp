@@ -7,5 +7,6 @@
     {
         Task<ExerciseDto?> GetExerciseAsync(int id);
         Task<List<ExerciseDto>> GetAllExercisesAsync();
+        Task<List<ExerciseDto>> GetExercisesByIdAsync(int[] ids);
     }
 }

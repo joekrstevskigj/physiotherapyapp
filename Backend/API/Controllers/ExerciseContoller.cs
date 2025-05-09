@@ -49,5 +49,25 @@
 
             return Ok(exercise);
         }
+
+        [HttpGet(nameof(GetExercisesById))]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<PatientResponseDto>> GetExercisesById([FromQuery] int[] exerciseID)
+        {
+            if (exerciseID == null || exerciseID.Length <= 0)
+            {
+                return BadRequest("Invalid exercise IDs.");
+            }
+
+            var exercise = await _exerciseService.GetExercisesByIdAsync(exerciseID).ConfigureAwait(false);
+            if (exercise == null || exercise.Count <= 0)
+            {
+                return NotFound($"No patient with ID of {exerciseID}");
+            }
+
+            return Ok(exercise);
+        }
     }
 }

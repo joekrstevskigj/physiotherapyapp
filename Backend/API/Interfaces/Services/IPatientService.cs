@@ -8,6 +8,6 @@
         Task<int> CreatePatientAsync(CreatePatientRequestDto dto);
         Task<PatientResponseDto?> GetPatientAsync(int id);
         Task<List<PatientResponseDto>> GetAllPatientsAsync();
-        Task<int> AssingExercise(int patientId, int exerciseId);
+        Task<int> AssingExercise(int patientId, List<int> exercisesId);
     }
 }
