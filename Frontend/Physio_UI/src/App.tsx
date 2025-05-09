@@ -1,34 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { useEffect, useState } from 'react';
+import type PatientDto from './types/PatientDto';
+import PatientList from './pages/PatientList';
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [patients, setPatients] = useState<PatientDto[]>([]);
+
+  useEffect(() => {
+    setPatients([
+      {
+        id: 1,
+        firstName: "Joe",
+        lastName: "Doe",
+        prescriptionCount: 3,
+      },
+      {
+        id: 2,
+        firstName: "Jane",
+        lastName: "Dolly",
+        prescriptionCount: 2,
+      },
+      {
+        id: 3,
+        firstName: "Cristopher",
+        lastName: "DeJohnosson",
+        prescriptionCount: 2,
+      },
+    ])
+  }, []);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <PatientList patients={patients} />
   )
 }
 
