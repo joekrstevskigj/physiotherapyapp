@@ -7,7 +7,7 @@
         [Required(ErrorMessage = "Patient ID is required.")]
         public int PatientId { get; set; }
 
-        [Required(ErrorMessage ="Exercise ID is required.")]
-        public int ExerciseId { get; set; }
+        [Required(ErrorMessage ="Exercises IDs is required.")]
+        public required List<int> ExercisesId { get; set; }
     }
 }

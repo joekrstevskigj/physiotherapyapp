@@ -5,15 +5,29 @@ function useApi<T>(endpoint: string) {
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
 
-    const fetchData = async () => {
+    const fetchData = async (method: 'GET' | 'POST' = 'GET', body?: string) => {
+
         setLoading(true);
         setError(null);
 
+        const completeEndpoint = method === 'GET' && body
+            ? `${endpoint}?${body}`
+            : endpoint;
+
+
         try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}${endpoint}`);
+            const response = await fetch(`${import.meta.env.VITE_API_URL}${completeEndpoint}`, {
+                method,
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: method === 'POST' ? JSON.stringify(body) : undefined,
+            });
+
             if (!response.ok) {
                 throw new Error(`Error: ${response.statusText}`);
             }
+
             const result = await response.json();
             setData(result);
         } catch (err: unknown) {

@@ -45,5 +45,23 @@
                     Sets = exercise.Sets
                 };
         }
+
+        public async Task<List<ExerciseDto>> GetExercisesByIdAsync(int[] ids)
+        {
+            var tasks = ids.Select(id => _exerciseRepository.GetByIdAsync(id)).ToArray();
+            var exercises = await Task.WhenAll(tasks).ConfigureAwait(false);
+
+            return exercises
+                .Where(exercise => exercise != null)
+                .Select(exercise => new ExerciseDto
+                {
+                    Id = exercise.Id,
+                    Name = exercise.Name,
+                    Repetitions = exercise.Repetitions,
+                    Sets = exercise.Sets,
+                    DurationSeconds = exercise.DurationSeconds
+                })
+                .ToList();
+        }
     }
 }

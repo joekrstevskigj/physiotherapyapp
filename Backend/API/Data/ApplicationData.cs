@@ -26,6 +26,13 @@
                         LastName = "Dolly",
                         Name = "Jane",
                         Exercises = new List<int> { 1, 2 }
+                    },
+                    new PatientModel
+                    {
+                        Id = 3,
+                        LastName = "Crishtopher",
+                        Name = "Jakson",
+                        Exercises = new List<int> { 1 }
                     }
                 };
 
@@ -51,9 +58,25 @@
                     {
                         Id = 3,
                         Name = "Exercise 3",
-                        DurationSeconds = 35,
-                        Repetitions = 2,
+                        DurationSeconds = 125,
+                        Repetitions = 3,
+                        Sets = 1
+                    },
+                    new ExerciseModel
+                    {
+                        Id = 4,
+                        Name = "Exercise 4",
+                        DurationSeconds = 100,
+                        Repetitions = 20,
                         Sets = 3
+                    },
+                    new ExerciseModel
+                    {
+                        Id = 5,
+                        Name = "Exercise 5",
+                        DurationSeconds = 358,
+                        Repetitions = 21,
+                        Sets = 13
                     }
                 };
 

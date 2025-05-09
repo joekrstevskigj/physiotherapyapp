@@ -5,5 +5,6 @@
     public interface IHeadsetService
     {
         Task<List<HeadsetDataDto>> GetAllHeadsetData();
+        Task<HeadsetDataDto?> GetAllHeadsetDataPatientId(int patientId);
     }
 }

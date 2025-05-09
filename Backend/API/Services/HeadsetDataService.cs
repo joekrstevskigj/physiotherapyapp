@@ -35,5 +35,29 @@
                 })
                 .ToList();
         }
+
+        public async Task<HeadsetDataDto?> GetAllHeadsetDataPatientId(int patientId)
+        {
+            var allHeadsetData = await _headsetRepository.GetAllAsync().ConfigureAwait(false);
+
+            var filteredData = allHeadsetData
+                .Where(headsetData => headsetData.PatiendId == patientId)
+                .Select(headsetData => new HeadsetDataDto
+                {
+                    PatiendId = headsetData.PatiendId,
+                    ResultOfExercise = headsetData.ResultOfExercise
+                        .Select(result => new ExerciseDto
+                        {
+                            Id = result.Id,
+                            Name = result.Name,
+                            DurationSeconds = result.DurationSeconds,
+                            Repetitions = result.Repetitions,
+                            Sets = result.Sets
+                        }).ToList()
+                })
+                .FirstOrDefault();
+
+            return filteredData;
+        }
     }
 }

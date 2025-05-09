@@ -2,7 +2,9 @@
 namespace API
 {
     using API.Data;
+    using API.Facades;
     using API.Interfaces.Data;
+    using API.Interfaces.Facades;
     using API.Interfaces.Repositories;
     using API.Interfaces.Services;
     using API.Repositories;
@@ -21,6 +23,17 @@ namespace API
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            // Add CORS policy
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll", policy =>
+                {
+                    policy.AllowAnyOrigin()
+                          .AllowAnyMethod()
+                          .AllowAnyHeader();
+                });
+            });
+
             builder.Services.AddSingleton<IApplicationData, ApplicationData>();
 
             builder.Services.AddScoped<IPatientRepository, PatientRepository>();
@@ -31,6 +44,8 @@ namespace API
             builder.Services.AddScoped<IExercisesService, ExercisesService>();
             builder.Services.AddScoped<IHeadsetService, HeadsetDataService>();
 
+            builder.Services.AddScoped<IHeadsetPatientDataFacade, HeadsetPatientDataFacade>();
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -40,8 +55,9 @@ namespace API
                 app.UseSwaggerUI();
             }
 
-            app.UseAuthorization();
+            app.UseCors("AllowAll");
 
+            app.UseAuthorization();
 
             app.MapControllers();
 
