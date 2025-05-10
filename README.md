@@ -8,6 +8,8 @@ The frontend is created with Vite React @lastest version and uses React Material
 
 ## Things that will improve the project
 - [ ] For the Web API, for each endpoint that returns ALL data, a pagination system or at least a limit, in case the data returned is huge.
+- [ ] Using React-Query instead of the fetch API for server communication. React-query has caching built in, so it will reduce needless calls to the server.
+- [ ] Implement caching in the backend, no need to read new data for every endpoint call.
 - [ ] Implementation of ADD, REMOVE and EDIT for patient data, as well as for the exercises.
 - [ ] In the API, use AutoMapper for better conversion between Models and DTOs
 - [ ] In the API, currently, there is no logging of things that went wrong. Implement _logger for each endpoint.
